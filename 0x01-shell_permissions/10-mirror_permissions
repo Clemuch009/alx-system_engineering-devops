@@ -1,0 +1,2 @@
+#!/nbin/bash
+chmod a+rwx,u-r,g-w,o-wx hello
