@@ -1,14 +1,12 @@
 #!/usr/bin/env bash
-
-sudo apt-get update
-sudo apt-get install -y nginx
-
-sudo sed -i 's/listen 80 default_server;/listen 8080 default_server;/g' /etc/nginx/sites-available/default
-sudo sed -i 's/listen \[::\]:80 default_server;/listen \[::\]:8080 default_server;/g' /etc/nginx/sites-available/default
-
-sudo sed -i 's/user www-data;/user nginx;/g' /etc/nginx/nginx.conf
-
-sudo service nginx restart
-
-ps auxff | grep ngin[x]
-nc -z 0 8080
+# Script to run Nginx as user'nginx'
+FILE="/etc/nginx/nginx.conf"
+FILE2="/etc/nginx/sites-available/default"
+chown nginx:nginx $FILE
+chown nginx:nginx $FILE2
+chmod u+rwx $FILE
+chmod u+rwx $FILE2
+sudo sed -i 's/#user www-data/user nginx/' $FILE
+sudo sed -i 's/80/8080/' $FILE2
+pkill apache2
+su nginx service nginx restart

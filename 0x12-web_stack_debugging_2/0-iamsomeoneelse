@@ -1,11 +1,3 @@
 #!/usr/bin/env bash
-# This script runs the whoami command as the user provided as an argument
-
-# Check if an argument (username) is provided
-if [ -z "$1" ]; then
-    echo "Usage: $0 <username>"
-    exit 1
-fi
-
-# Run whoami command as the specified user
+# Script to run software as another user temporarily
 sudo -u "$1" whoami
