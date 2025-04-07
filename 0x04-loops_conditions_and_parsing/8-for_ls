@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# List content of current directory, sorted, showing part after first dash
+
+for file in $(ls -l | sort);do
+	if [[ "$file" == *_* ]]; then
+		echo "${file#*_}"
+	else
+		echo "$file"
+	fi
+done
